@@ -220,3 +220,51 @@ const users = [
     }
   }
 ];
+
+
+
+final List<Map<String, dynamic>> items = [
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 1',
+    'price': 19.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 2',
+    'price': 24.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 3',
+    'price': 29.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 4',
+    'price': 34.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 1',
+    'price': 19.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 2',
+    'price': 24.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 3',
+    'price': 29.99,
+  },
+  {
+    'imageUrl': 'https://via.placeholder.com/100',
+    'name': 'Item 4',
+    'price': 34.99,
+  },
+];
+
+
+

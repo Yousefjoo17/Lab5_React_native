@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/profile_view.dart';
+import 'package:testapp/list_items_view.dart';
 import 'package:testapp/service.dart';
 import 'package:testapp/show_snack_bar.dart';
 import 'package:testapp/widgets/Custom_button.dart';
@@ -83,8 +83,7 @@ class _LoginViewState extends State<LoginView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ProfileView(userName: userName!),
+                          builder: (context) =>  ListItemView(),
                         ),
                       );
                     } else {
