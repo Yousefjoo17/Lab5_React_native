@@ -88,3 +88,6 @@ static bool VerifyPassword(string inputPassword, string hashedPassword)
 {
     return HashPassword(inputPassword) == hashedPassword;
 }
+
+
+
