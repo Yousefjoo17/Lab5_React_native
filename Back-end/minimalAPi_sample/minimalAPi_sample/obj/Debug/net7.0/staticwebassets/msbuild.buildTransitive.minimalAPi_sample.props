@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\minimalAPi_sample.props" />
+</Project>
