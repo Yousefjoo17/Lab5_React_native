@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ItemWidget extends StatelessWidget {
-  final String image_path;
+  final String url;
   final String name;
   final double price;
   final VoidCallback onAddToCart;
 
   const ItemWidget({
     super.key,
-    required this.image_path,
+    required this.url,
     required this.name,
     required this.price,
     required this.onAddToCart,
@@ -27,8 +27,8 @@ class ItemWidget extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  image_path,
+                child: Image.network(
+                  url,
                   height: 100,
                   width: double.infinity,
                   fit: BoxFit.cover,

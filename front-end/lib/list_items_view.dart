@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/cart_view.dart';
+import 'package:testapp/util/API_service.dart';
 import 'package:testapp/widgets/item_widget.dart';
 
 class ListItemView extends StatefulWidget {
@@ -10,15 +11,24 @@ class ListItemView extends StatefulWidget {
 }
 
 class _ListItemViewState extends State<ListItemView> {
-  final List<Map<String, dynamic>> items = List.generate(12, (index) {
-    return {
-      'imagePath': "assets/images/item.jpg",
-      'name': 'Item ${index + 1}',
-      'price': (15.99 + (index * 2)),
-    };
-  });
+  List<Map<String, dynamic>> products = []; // Empty list initially
+  List<Map<String, dynamic>> cart = [];
 
-  List<Map<String, dynamic>> cart = []; // Empty cart list
+  final ProductService productService = ProductService();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchItems();
+  }
+
+  void fetchItems() async {
+    List<Map<String, dynamic>> fetchedProducts =
+        await productService.fetchProducts();
+    setState(() {
+      products = fetchedProducts;
+    });
+  }
 
   void addToCart(Map<String, dynamic> item) {
     setState(() {
@@ -37,7 +47,7 @@ class _ListItemViewState extends State<ListItemView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shop'),
+        title: const Text('Logout'),
         actions: [
           Stack(
             children: [
@@ -51,7 +61,7 @@ class _ListItemViewState extends State<ListItemView> {
                   );
                 },
               ),
-              if (cart.isNotEmpty) // Show cart count only if not empty
+              if (cart.isNotEmpty)
                 Positioned(
                   right: 8,
                   top: 8,
@@ -71,27 +81,29 @@ class _ListItemViewState extends State<ListItemView> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 0.8,
-          ),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
-            return ItemWidget(
-              image_path: item['imagePath'],
-              name: item['name'],
-              price: item['price'],
-              onAddToCart: () => addToCart(item),
-            );
-          },
-        ),
-      ),
+      body: products.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 0.8,
+                ),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  final item = products[index];
+                  return ItemWidget(
+                    url: item['url'],
+                    name: item['name'],
+                    price: item['price'],
+                    onAddToCart: () => addToCart(item),
+                  );
+                },
+              ),
+            ),
     );
   }
 }

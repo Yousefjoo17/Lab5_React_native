@@ -36,8 +36,8 @@ class _CartPageState extends State<CartPage> {
                   margin:
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   child: ListTile(
-                    leading: Image.asset(
-                      item['imagePath'],
+                    leading: Image.network(
+                      item['url'],
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,
