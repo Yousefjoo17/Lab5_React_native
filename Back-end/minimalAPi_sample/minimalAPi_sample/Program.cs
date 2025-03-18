@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register DbContext with SQL Server
+// Register the DbContext with SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -64,7 +64,7 @@ app.MapPost("/products", async (AppDbContext dbContext, [FromBody] Product newPr
     return Results.Created($"/products/{newProduct.Id}", newProduct);
 });
 
-// Get all products
+// Get all products saved
 app.MapGet("/products", async (AppDbContext dbContext) =>
 {
     var products = await dbContext.Products.ToListAsync();
